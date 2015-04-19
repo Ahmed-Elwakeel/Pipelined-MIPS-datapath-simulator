@@ -58,19 +58,19 @@ public class Fetch_Instruction {
 		String operation = instruction[0];
 		String rs = "";
 		String rt = "";
-		String thirdField = "";
+		String rd = "";
 		String inst = "";
 //R-Instruction
 		if(Arrays.asList(RInstruction).contains(operation) ){
 			 rs = Simulator.opNameAndBinary.get(instruction[1]);
 			 rt = Simulator.opNameAndBinary.get(instruction[2]);
-
+			 rd = Simulator.opNameAndBinary.get(instruction[3]);
 			
 			 if(instruction[0].equals("sll") ||instruction[0].equals("srl") ){
 				 String shamt = String.format("%5s", Integer.toBinaryString(Integer.parseInt(instruction[3]))).replace(' ', '0');
-				 inst = "000000"+rs+rt+thirdField+"shamt"+funct.get(instruction[0]);
+				 inst = "000000"+"00000"+rs+rt+shamt+funct.get(instruction[0]);
 			 }else{
-				 inst = "000000"+rs+rt+thirdField+"00000"+ (String) funct.get(instruction[0]);
+				 inst = "000000"+rs+rt+rd+"00000"+ funct.get(instruction[0]);
 			 }
 //I-Instruction with three fields
 		}else if(Arrays.asList(IThreeFields).contains(operation)){
@@ -91,10 +91,15 @@ public class Fetch_Instruction {
 			}else{
 			 rs = Simulator.opNameAndBinary.get(instruction[1]);
 			 int i =0;
+			 int j =0;
 			 while(instruction[2].charAt(i)!='('){
 				i++; 
 			 }
-			 String reg = instruction[2].substring(i+1,i+5);
+			 j = i;
+			 while(instruction[2].charAt(j)!=')'){
+				 j++;
+			 }
+			 String reg = instruction[2].substring(i+1,j);
 			 rt = Simulator.opNameAndBinary.get(reg);
 			 
 			 int number = Integer.parseInt(instruction[2].substring(0,i));
