@@ -14,8 +14,7 @@ public class ID_EX {
 	public ID_EX(){
 		
 	}
-    public void set(String instruction){
-    	this.instruction=IF_ID.instruction;
+    public void set(String instruction,String opcode,String rs,String rt,String rd,String shamt, String funct,String address){
     	this.opcode=instruction.substring(31, 26);
     	this.rs=instruction.substring(25, 21);
     	this.rt=instruction.substring(20, 16);

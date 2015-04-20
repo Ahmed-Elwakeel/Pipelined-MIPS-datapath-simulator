@@ -1,0 +1,46 @@
+package storage_components;
+import java.util.HashMap;
+import java.util.Map;
+
+public class Register {
+	public Map<String, String> reg;
+	
+	public Register(){
+		reg =new HashMap<String, String>();
+		reg.put("zero", "00000");
+		reg.put("$at" , "00001");
+		reg.put("$v0" , "00010");
+		reg.put("$v1" , "00011");
+		reg.put("$a0" , "00100");
+		reg.put("$a1" , "00101");
+		reg.put("$a2" , "00110");
+		reg.put("$a3" ,"00111");
+		reg.put("$t0" ,"01000");
+		reg.put("$t1" ,"01001");
+		reg.put("$t2" ,"01010");
+		reg.put("$t3" ,"01011");
+		reg.put("$t4" ,"01100");
+		reg.put("$t5" ,"01101");
+		reg.put("$t6" ,"01110");
+		reg.put("$t7" ,"01111");
+		reg.put("$s0" ,"10000");
+		reg.put("$s1" ,"10001");
+		reg.put("$s2" ,"10010");
+		reg.put("$s3" ,"10011");
+		reg.put("$s4" ,"10100");
+		reg.put("$s5" ,"10101");
+		reg.put("$s6" ,"10110");
+		reg.put("$s7" ,"10111");
+		reg.put("$t8", "11000");
+		reg.put("$t9", "11001");
+		reg.put("$k0", "11010");
+		reg.put("$k1", "11011");
+		reg.put("$gp", "11100");
+		reg.put("$sp", "11101");
+		reg.put("$s8", "11110"); // not $fp
+		reg.put("$ra", "11111");
+
+		
+	}
+
+}
