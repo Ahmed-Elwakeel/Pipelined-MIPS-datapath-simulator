@@ -10,14 +10,7 @@ public class ID_EX {
 	public static String shamt;
 	public static String funct;
 	public static String address;
-	public static int RegDst;
-	public static int Branch;
-	public static int MemRead;
-	public static int MemtoReg;
-	public static int ALUOp;
-	public static int MemWrite;
-	public static int ALUSrc;
-	public static int RegWrite;
+	
 	public ID_EX(){
 		
 	}
