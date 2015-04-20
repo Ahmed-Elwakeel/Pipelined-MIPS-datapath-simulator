@@ -10,7 +10,7 @@ public class Fetch_Instruction {
 	
 /*	static String [] threeFields = {"add","addi","sub","sll","srl","and","nor","beq","bne","slt","sltu"};
 	static String [] twoFields = {"lw","lb","lbu","sw","sb","lui"};
-	static String [] oneField = {"j","jal","jr"};
+	static String [] oneField = {"j","jal","jr"};	
 */	
 	static String [] RInstruction = {"add","sub","sll","srl","and","nor","slt","sltu"};
 	static String [] IThreeFields = {"addi","beq","bne"};
@@ -62,22 +62,26 @@ public class Fetch_Instruction {
 		String inst = "";
 //R-Instruction
 		if(Arrays.asList(RInstruction).contains(operation) ){
-			 rs = Simulator.opNameAndBinary.get(instruction[1]);
-			 rt = Simulator.opNameAndBinary.get(instruction[2]);
-			 rd = Simulator.opNameAndBinary.get(instruction[3]);
+			 rs = Simulator.opNameAndBinary.get(instruction[2]);
+			 rt = Simulator.opNameAndBinary.get(instruction[3]);
+			 rd = Simulator.opNameAndBinary.get(instruction[1]);
 			
 			 if(instruction[0].equals("sll") ||instruction[0].equals("srl") ){
 				 String shamt = String.format("%5s", Integer.toBinaryString(Integer.parseInt(instruction[3]))).replace(' ', '0');
-				 inst = "000000"+"00000"+rs+rt+shamt+funct.get(instruction[0]);
+				 inst = "000000"+"00000"+rs+rd+shamt+funct.get(instruction[0]);
 			 }else{
 				 inst = "000000"+rs+rt+rd+"00000"+ funct.get(instruction[0]);
 			 }
 //I-Instruction with three fields
 		}else if(Arrays.asList(IThreeFields).contains(operation)){
 			
-			rs = Simulator.opNameAndBinary.get(instruction[1]);
-			 rt = Simulator.opNameAndBinary.get(instruction[2]);
-			 
+			if(operation.equals("addi")){
+			rs = Simulator.opNameAndBinary.get(instruction[2]);
+			 rt = Simulator.opNameAndBinary.get(instruction[1]);
+			}else{
+				rs = Simulator.opNameAndBinary.get(instruction[1]);
+				 rt = Simulator.opNameAndBinary.get(instruction[2]);
+			}
 			inst = op.get(instruction[0]) + rs + rt +String.format("%16s", Integer.toBinaryString(Integer.parseInt(instruction[3]))).replace(' ', '0');
 
 //I-Instruction with two fields 
@@ -89,7 +93,7 @@ public class Fetch_Instruction {
 				inst = op.get(instruction[0])+rs+rt+ String.format("%16s", Integer.toBinaryString(Integer.parseInt(instruction[2]))).replace(' ', '0');
 				
 			}else{
-			 rs = Simulator.opNameAndBinary.get(instruction[1]);
+			 rt = Simulator.opNameAndBinary.get(instruction[1]);
 			 int i =0;
 			 int j =0;
 			 while(instruction[2].charAt(i)!='('){
@@ -100,14 +104,20 @@ public class Fetch_Instruction {
 				 j++;
 			 }
 			 String reg = instruction[2].substring(i+1,j);
-			 rt = Simulator.opNameAndBinary.get(reg);
+			 rs = Simulator.opNameAndBinary.get(reg);
 			 
 			 int number = Integer.parseInt(instruction[2].substring(0,i));
 			 inst = op.get(instruction[0]) + rs + rt + String.format("%16s", Integer.toBinaryString(number)).replace(' ', '0');
 			}
 //J-Instruction		
 		}else if(Arrays.asList(JInstruction).contains(operation)){
-			
+			if(operation.equals("jr")){ // r-type jr
+				rs = Simulator.opNameAndBinary.get(instruction[1]);
+				inst = rs + "00000" + "00000" + "00000" + "001000";
+			}else {
+				inst = op.get(instruction[0]) +String.format("%26s", Integer.toBinaryString(Integer.parseInt(instruction[1]))).replace(' ', '0');
+
+			}
 		}
 		
 		Simulator.if_id.set(pc, inst);

@@ -3,7 +3,7 @@ package storage_components;
 
 public class Instruction_Memory {
 	
-	static String [] instructionMemory = new String[17];
+	static String [] instructionMemory = new String[100];
 	public static int size= 0;
 	public Instruction_Memory(){
 		
