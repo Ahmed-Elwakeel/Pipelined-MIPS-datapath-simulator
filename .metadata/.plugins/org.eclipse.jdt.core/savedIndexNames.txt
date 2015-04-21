@@ -10,7 +10,6 @@ INDEX VERSION 1.126+C:\Users\Ahmed Wael\Pipelined-MIPS-datapath-simulator\.metad
 2743915309.index
 834584462.index
 1065832147.index
-2699539614.index
 1947431546.index
 3991718231.index
 828133061.index
