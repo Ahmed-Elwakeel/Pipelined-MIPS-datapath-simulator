@@ -2,17 +2,24 @@ package datapath;
 
 import logic_components.ALU;
 
-public class Execute {
+public class Execute_Instruction {
 	static boolean zero;
 	static String output;
 	static String pc;
 	static String outregdst;
-	public Execute(){
+	public Execute_Instruction(){
 		alu();
 		addpc();
 		regdst();
-		EX_MEM ex_mem  = new EX_MEM();
-		ex_mem.set(zero, output, ID_EX.readdata2, outregdst, pc);
+		//EX_MEM ex_mem  = new EX_MEM();
+		//ex_mem.set(zero, output, ID_EX.readdata2, outregdst, pc);
+		EX_MEM.zero = zero;
+		EX_MEM.aluResult = output;
+		EX_MEM.data2 = ID_EX.readdata2;
+		EX_MEM.outregdst = outregdst;
+		EX_MEM.pc = pc;
+		EX_MEM.branch = ID_EX.Branch;
+	    EX_MEM.regWrite = ID_EX.RegWrite;
 	}
 	
 	public void regdst(){
@@ -25,7 +32,7 @@ public class Execute {
 	
 	public void alu(){
 		if(ID_EX.ALUSrc){
-			ALU alu = new ALU(ID_EX.readdata1 , ID_EX.signExtend);
+			ALU alu = new ALU(ID_EX.readdata1 , ID_EX.address);
 		}else{
 			ALU alu = new ALU(ID_EX.readdata1 , ID_EX.readdata2);
 		}	
@@ -35,7 +42,7 @@ public class Execute {
 	}
 	
 	public void addpc(){
-		int x = Integer.parseInt(ID_EX.signExtend, 2);
+		int x = Integer.parseInt(ID_EX.address, 2);
 		int y = Integer.parseInt(ID_EX.pc, 2);
 		
 		int res = x + y;

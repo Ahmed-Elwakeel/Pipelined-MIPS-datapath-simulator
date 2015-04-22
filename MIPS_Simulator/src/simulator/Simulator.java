@@ -7,7 +7,9 @@ import java.util.Map;
 
 import storage_components.Instruction_Memory;
 import storage_components.PC;
+import datapath.EX_MEM;
 import datapath.Fetch_Instruction;
+import datapath.ID_EX;
 import datapath.IF_ID;
 
 
@@ -61,7 +63,9 @@ public class Simulator {
 	public void init(){
 		 instructionmem = new Instruction_Memory();
 		 pc = new PC();
-		 if_id = new IF_ID();
+		// if_id = new IF_ID();
+		// ID_EX id_ex = new ID_EX();
+		// EX_MEM ex_mem= new EX_MEM();
 		 nameToBinary();
 	}
 

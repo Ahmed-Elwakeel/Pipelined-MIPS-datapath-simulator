@@ -120,7 +120,9 @@ public class Fetch_Instruction {
 			}
 		}
 		
-		Simulator.if_id.set(pc, inst);
+		//Simulator.if_id.set(pc, inst);
+		IF_ID.instruction = inst;
+		IF_ID.pc = pc;
 
 	}
 	

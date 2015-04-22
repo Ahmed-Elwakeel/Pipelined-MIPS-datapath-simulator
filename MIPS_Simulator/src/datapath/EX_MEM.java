@@ -7,6 +7,9 @@ public class EX_MEM {
 	public static String data2;
 	public static String outregdst;
 	public static String pc;
+	
+	public static boolean branch;
+	public static boolean regWrite;
 
 	public EX_MEM() {
 

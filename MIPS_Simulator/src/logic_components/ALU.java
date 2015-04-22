@@ -11,7 +11,8 @@ public class ALU {
  public ALU(String r1,String r2){
 	 	
 	 ALUControl aluControl = new ALUControl();
-	 String aluOutput = aluControl.getcode(ID_EX.funct, ID_EX.ALUOp);
+	 String funct = ID_EX.address.substring(27,32);
+	 String aluOutput = aluControl.getcode(funct, ID_EX.ALUOp);
 	 aluoutputmethod(r1 ,r2 , aluOutput);
 	 
  }
