@@ -2,6 +2,7 @@ package datapath;
 
 public class ID_EX {
 	public static String pc;
+	public static String opcode;
 	public static String rsv;
 	public static String rtv;
 	public static String rd;

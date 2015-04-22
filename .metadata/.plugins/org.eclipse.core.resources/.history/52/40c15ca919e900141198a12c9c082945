@@ -1,7 +1,9 @@
 package datapath;
-
+import storage_components.Register;
+import storage_components.Control;
 public class ID_EX {
 	public static String pc;
+	public static String opcode;
 	public static String rsv;
 	public static String rtv;
 	public static String rd;

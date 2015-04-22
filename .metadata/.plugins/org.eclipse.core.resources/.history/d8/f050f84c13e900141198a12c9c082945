@@ -1,0 +1,5 @@
+package datapath;
+
+public class Decode_Instruction {
+    public static String instruction;
+}
