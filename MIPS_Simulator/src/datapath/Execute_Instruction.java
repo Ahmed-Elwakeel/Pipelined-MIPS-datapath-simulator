@@ -20,6 +20,9 @@ public class Execute_Instruction {
 		EX_MEM.pc = pc;
 		EX_MEM.branch = ID_EX.Branch;
 	    EX_MEM.regWrite = ID_EX.RegWrite;
+	    EX_MEM.memRead = ID_EX.MemRead;
+	    EX_MEM.memWrite = ID_EX.MemWrite;
+	    EX_MEM.memToReg= ID_EX.MemtoReg;
 	}
 	
 	public void regdst(){

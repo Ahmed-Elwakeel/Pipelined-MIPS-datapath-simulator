@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import storage_components.Instruction_Memory;
+import storage_components.Memory;
 import storage_components.PC;
 import datapath.EX_MEM;
 import datapath.Fetch_Instruction;
@@ -19,14 +20,20 @@ public class Simulator {
 
 	public static Instruction_Memory instructionmem;
 	public static PC pc;
-	public static IF_ID if_id;
+	//public static IF_ID if_id;
+	static int size;
 	public Simulator() throws IOException{
 		init();
 		readInput();
-		for(int i = 0 ;i < instructionmem.size ;i++){
-			Fetch_Instruction fetch = new Fetch_Instruction(i);
+		String currentpc = pc.instructionpc;
+		Memory.instructionMemSize = size;
+		/*for(int i = 0 ;i < size ;i++){
+			Fetch_Instruction fetch = new Fetch_Instruction(currentpc);
+			
 			System.out.println(IF_ID.instruction);
-		}
+		}*/
+		Fetch_Instruction fetch = new Fetch_Instruction();
+
 	}
 	public void nameToBinary (){
 		opNameAndBinary = new HashMap<String , String>();
@@ -62,7 +69,7 @@ public class Simulator {
 	
 	public void init(){
 		 instructionmem = new Instruction_Memory();
-		 pc = new PC();
+		// pc = new PC();
 		// if_id = new IF_ID();
 		// ID_EX id_ex = new ID_EX();
 		// EX_MEM ex_mem= new EX_MEM();
@@ -73,10 +80,26 @@ public class Simulator {
 	public void readInput() throws IOException{
 		BufferedReader br = new BufferedReader(new FileReader("input.txt"));
 		String line = "";
-		int i = 0;
+		size = 0;
 		while((line = br.readLine())!= null){
-			instructionmem.add(line, i );
-			i++;
+			if(line.equals("data")){
+				while(!(line=br.readLine()).equals("text")){
+					String arrayString [] = line.split(" ");
+					if(arrayString[0].equals("pc")){
+						pc.set(Integer.parseInt(arrayString[1]));
+						pc.instructionpc = String.format("%32s", Integer.toBinaryString(Integer.parseInt(arrayString[1]))).replace(' ', '0');
+					}
+					Memory.memory[Integer.parseInt(arrayString[0])] =  String.format("%32s", Integer.toBinaryString(Integer.parseInt(arrayString[1]))).replace(' ', '0');	
+				}
+				line = br.readLine(); //3shan hayb2a wa2ef 3and al text
+			}
+			
+			//instructionmem.add(line, i );
+			//i++;
+		
+			Memory.memory[pc.pcint] = line;
+			pc.add();
+			size++;
 		}
 	}
 	

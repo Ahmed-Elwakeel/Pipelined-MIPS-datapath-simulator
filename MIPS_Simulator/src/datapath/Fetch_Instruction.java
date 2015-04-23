@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import simulator.Simulator;
+import storage_components.Memory;
 
 public class Fetch_Instruction {
 	
@@ -49,12 +50,26 @@ public class Fetch_Instruction {
 		op.put("jal" , "000011");
 
 	}
-	public Fetch_Instruction(int pc){
+	public Fetch_Instruction(){
+		
+		
 		funct();
 		op();
 		
-		String instruction[] = Simulator.instructionmem.get(pc).split(" ");
+		int starting = Integer.parseInt(Simulator.pc.instructionpc,2);
+		int end = Memory.instructionMemSize + starting;
+		for(int i=starting ; i < end ; i++){
+			fetching(i);
+		}
 		
+		
+
+	}
+	
+	
+	public void fetching(int currentpc){
+		String instruction[] = Memory.memory[currentpc].split(" ");
+		//String instruction[] = Simulator.instructionmem.get(pc).split(" ");
 		String operation = instruction[0];
 		String rs = "";
 		String rt = "";
@@ -122,8 +137,7 @@ public class Fetch_Instruction {
 		
 		//Simulator.if_id.set(pc, inst);
 		IF_ID.instruction = inst;
-		IF_ID.pc = pc;
-
+		IF_ID.pc = String.format("%32s", Integer.toBinaryString(currentpc)).replace(' ', '0');;
 	}
 	
 	
