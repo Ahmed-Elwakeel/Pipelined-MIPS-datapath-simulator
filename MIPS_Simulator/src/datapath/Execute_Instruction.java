@@ -37,10 +37,10 @@ public class Execute_Instruction {
 	
 	public void alu(){
 		if(ID_EX.ALUSrc){
-			ALU alu = new ALU(ID_EX.readdata1 , ID_EX.address);
+			ALU alu = new ALU( ID_EX.readdata1 , ID_EX.address );
 		}else{
-			ALU alu = new ALU(ID_EX.readdata1 , ID_EX.readdata2);
-		}	
+			ALU alu = new ALU(ID_EX.readdata1 , ID_EX.readdata2 );
+		}
 		output = ALU.output;
 		zero = ALU.zero;
 		

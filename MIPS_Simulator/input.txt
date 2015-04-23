@@ -1,7 +1,11 @@
 data
-1 4
-2 3
-3 50
-pc 4
+0 7
+4 3
+8 50
+pc 20
 text
-add $t0 $t1 $t2
+addi $s1 zero 0
+lw $s2 0($s1)
+lw $s3 4($s1)
+sltu $s4 $s3 $s2
+sw $s4 4($s1)

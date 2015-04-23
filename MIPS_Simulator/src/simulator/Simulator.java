@@ -99,7 +99,6 @@ public class Simulator {
 			
 			//instructionmem.add(line, i );
 			//i++;
-		
 			Memory.memory[PC.pcint] = line;
 			PC.add();
 			size++;
@@ -110,5 +109,6 @@ public class Simulator {
 	
 	public static void main(String[] args) throws IOException {
 		Simulator sim = new Simulator();
+		
 	}
 }

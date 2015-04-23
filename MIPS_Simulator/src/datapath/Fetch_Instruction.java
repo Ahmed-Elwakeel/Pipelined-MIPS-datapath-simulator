@@ -58,8 +58,8 @@ public class Fetch_Instruction {
 		op();
 		
 		int starting = Integer.parseInt(PC.instructionpc,2);
-		int end = Memory.instructionMemSize + starting;
-		for(int i=starting ; i < end ; i++){
+		int end = (Memory.instructionMemSize*4)+ starting;
+		for(int i=starting ; i < end ; i=i+4){
 			fetching(i);
 		}
 		
@@ -85,6 +85,7 @@ public class Fetch_Instruction {
 			 if(instruction[0].equals("sll") ||instruction[0].equals("srl") ){
 				 String shamt = String.format("%5s", Integer.toBinaryString(Integer.parseInt(instruction[3]))).replace(' ', '0');
 				 inst = "000000"+"00000"+rs+rd+shamt+funct.get(instruction[0]);
+		
 			 }else{
 				 inst = "000000"+rs+rt+rd+"00000"+ funct.get(instruction[0]);
 			 }

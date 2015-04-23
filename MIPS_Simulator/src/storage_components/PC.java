@@ -10,7 +10,7 @@ public class PC {
 	}
 	
 	public static void add(){
-		pcint += 1;
+		pcint += 4;
 		pc = String.format("%32s", Integer.toBinaryString(pcint)).replace(' ', '0');
 	}
 	
