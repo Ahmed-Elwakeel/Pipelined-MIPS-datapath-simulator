@@ -1,3 +1,7 @@
-add $t0 $s0 $s1
-lw $t0 20($t7)
-addi $s0 zero -10
+data
+1 4
+2 3
+3 50
+pc 4
+text
+add $t0 $t1 $t2

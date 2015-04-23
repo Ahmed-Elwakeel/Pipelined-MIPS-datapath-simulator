@@ -6,6 +6,7 @@ import java.util.Map;
 
 import simulator.Simulator;
 import storage_components.Memory;
+import storage_components.PC;
 
 public class Fetch_Instruction {
 	
@@ -56,7 +57,7 @@ public class Fetch_Instruction {
 		funct();
 		op();
 		
-		int starting = Integer.parseInt(Simulator.pc.instructionpc,2);
+		int starting = Integer.parseInt(PC.instructionpc,2);
 		int end = Memory.instructionMemSize + starting;
 		for(int i=starting ; i < end ; i++){
 			fetching(i);
@@ -137,7 +138,9 @@ public class Fetch_Instruction {
 		
 		//Simulator.if_id.set(pc, inst);
 		IF_ID.instruction = inst;
-		IF_ID.pc = String.format("%32s", Integer.toBinaryString(currentpc)).replace(' ', '0');;
+		IF_ID.pc = String.format("%32s", Integer.toBinaryString(currentpc)).replace(' ', '0');
+		
+		Decode_Instruction decode_instruction = new Decode_Instruction();
 	}
 	
 	

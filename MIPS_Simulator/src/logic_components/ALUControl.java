@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class ALUControl {
 	
-	Map<String , String> opsixbits;
+	static Map<String , String> opsixbits;
 	
 	public ALUControl( ){
 
@@ -15,7 +15,7 @@ public class ALUControl {
 	public void opsixbits(){
 	
 		
-		Map<String , String> opsixbits = new HashMap<String,String>();
+		opsixbits = new HashMap<String,String>();
 		opsixbits.put("100000" , "0000"); //add
 		opsixbits.put("100010" , "0001"); //sub
 		opsixbits.put("000000" , "0010"); //sll
@@ -25,6 +25,7 @@ public class ALUControl {
 		opsixbits.put("101010" , "0110"); //slt
 		opsixbits.put("101011" , "0111"); //sltu
 		opsixbits.put("001000" , "1000"); //jr
+		
 
 	}
 	//http://www.cs.carleton.edu/faculty/adalal/teaching/f04/207/notes/oct29.pdf
@@ -34,6 +35,7 @@ public class ALUControl {
 		}else if(ALUOp.equals("01")){ //sub
 			return "0001"; 
 		}else { //funct
+			opsixbits.get(sixbits);
 			return opsixbits.get(sixbits);
 		}
 	}

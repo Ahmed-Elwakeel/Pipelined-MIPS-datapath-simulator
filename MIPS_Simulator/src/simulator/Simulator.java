@@ -8,6 +8,7 @@ import java.util.Map;
 import storage_components.Instruction_Memory;
 import storage_components.Memory;
 import storage_components.PC;
+import storage_components.Registers;
 import datapath.EX_MEM;
 import datapath.Fetch_Instruction;
 import datapath.ID_EX;
@@ -17,15 +18,15 @@ import datapath.IF_ID;
 public class Simulator {
 	
 	public static Map<String , String> opNameAndBinary ;
-
+	public static Registers registers;
 	public static Instruction_Memory instructionmem;
-	public static PC pc;
+	//public static PC pc;
 	//public static IF_ID if_id;
 	static int size;
 	public Simulator() throws IOException{
 		init();
 		readInput();
-		String currentpc = pc.instructionpc;
+		String currentpc = PC.instructionpc;
 		Memory.instructionMemSize = size;
 		/*for(int i = 0 ;i < size ;i++){
 			Fetch_Instruction fetch = new Fetch_Instruction(currentpc);
@@ -64,7 +65,6 @@ public class Simulator {
 		opNameAndBinary.put("$s8", "11110"); // not $fp
 		opNameAndBinary.put("$ra", "11111");
 
-
 	}
 	
 	public void init(){
@@ -73,6 +73,7 @@ public class Simulator {
 		// if_id = new IF_ID();
 		// ID_EX id_ex = new ID_EX();
 		// EX_MEM ex_mem= new EX_MEM();
+		  registers = new Registers();
 		 nameToBinary();
 	}
 
@@ -86,10 +87,12 @@ public class Simulator {
 				while(!(line=br.readLine()).equals("text")){
 					String arrayString [] = line.split(" ");
 					if(arrayString[0].equals("pc")){
-						pc.set(Integer.parseInt(arrayString[1]));
-						pc.instructionpc = String.format("%32s", Integer.toBinaryString(Integer.parseInt(arrayString[1]))).replace(' ', '0');
+						//pc.set(Integer.parseInt(arrayString[1]));
+						PC.set(Integer.parseInt(arrayString[1]));
+						PC.instructionpc = String.format("%32s", Integer.toBinaryString(Integer.parseInt(arrayString[1]))).replace(' ', '0');
+					}else{
+						Memory.memory[Integer.parseInt(arrayString[0])] =  String.format("%32s", Integer.toBinaryString(Integer.parseInt(arrayString[1]))).replace(' ', '0');
 					}
-					Memory.memory[Integer.parseInt(arrayString[0])] =  String.format("%32s", Integer.toBinaryString(Integer.parseInt(arrayString[1]))).replace(' ', '0');	
 				}
 				line = br.readLine(); //3shan hayb2a wa2ef 3and al text
 			}
@@ -97,8 +100,8 @@ public class Simulator {
 			//instructionmem.add(line, i );
 			//i++;
 		
-			Memory.memory[pc.pcint] = line;
-			pc.add();
+			Memory.memory[PC.pcint] = line;
+			PC.add();
 			size++;
 		}
 	}

@@ -15,6 +15,6 @@ public class Mem {
 			MEM_WB.regWrite = EX_MEM.regWrite;
 			MEM_WB.memToReg = EX_MEM.memToReg;
 			MEM_WB.outregdst = EX_MEM.outregdst;
-		
+		Wb wb = new Wb();
 	}
 }

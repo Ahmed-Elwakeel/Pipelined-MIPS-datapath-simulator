@@ -8,10 +8,9 @@ import datapath.MEM_WB;
 public class Memory {
 	
 //public static Map<String , String> memory ;
-	public static String memory [] ;
+	public static String memory [] = new String [1000];;
 	public static int instructionMemSize;
 	public Memory(){
-		memory = new String [1000];
 	}
 	
 	
