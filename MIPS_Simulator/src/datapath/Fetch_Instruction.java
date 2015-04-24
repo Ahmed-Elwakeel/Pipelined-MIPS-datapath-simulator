@@ -57,19 +57,15 @@ public class Fetch_Instruction {
 		funct();
 		op();
 		
-		int starting = Integer.parseInt(PC.instructionpc,2);
-		int end = (Memory.instructionMemSize*4)+ starting;
-		for(int i=starting ; i < end ; i=i+4){
-			fetching(i);
-		}
 		
 		
 
 	}
 	
 	
-	public void fetching(int currentpc){
-		String instruction[] = Memory.memory[currentpc].split(" ");
+	public void fetching(String currentpc){
+//System.out.println(currentpc);
+		String instruction[] = Memory.memory[Integer.parseInt(currentpc,2)].split(" ");
 		//String instruction[] = Simulator.instructionmem.get(pc).split(" ");
 		String operation = instruction[0];
 		String rs = "";
@@ -91,7 +87,7 @@ public class Fetch_Instruction {
 			 }
 //I-Instruction with three fields
 		}else if(Arrays.asList(IThreeFields).contains(operation)){
-			
+
 			if(operation.equals("addi")){
 			rs = Simulator.opNameAndBinary.get(instruction[2]);
 			 rt = Simulator.opNameAndBinary.get(instruction[1]);
@@ -99,11 +95,16 @@ public class Fetch_Instruction {
 				rs = Simulator.opNameAndBinary.get(instruction[1]);
 				 rt = Simulator.opNameAndBinary.get(instruction[2]);
 			}
-			inst = op.get(instruction[0]) + rs + rt +String.format("%16s", Integer.toBinaryString(Integer.parseInt(instruction[3]))).replace(' ', '0');
+			long imm = Long.parseLong(instruction[3]);
+			int intImm =(int) imm;
+			if(imm >= 0){
+				inst = op.get(instruction[0]) + rs + rt +String.format("%16s", Integer.toBinaryString(Integer.parseInt(instruction[3]))).replace(' ', '0');
+			}else{
 
+			inst = op.get(instruction[0]) + rs + rt +String.format("%16s", Integer.toBinaryString(Integer.parseInt(instruction[3]))).replace(' ', '0').substring(16, 32);
+			}
 //I-Instruction with two fields 
 		}else if(Arrays.asList(ITwoFields).contains(operation)){
-			
 			if((operation.equals("lui"))){
 				rs = "00000";
 				rt = Simulator.opNameAndBinary.get(instruction[1]);
@@ -139,7 +140,7 @@ public class Fetch_Instruction {
 		
 		//Simulator.if_id.set(pc, inst);
 		IF_ID.instruction = inst;
-		IF_ID.pc = String.format("%32s", Integer.toBinaryString(currentpc)).replace(' ', '0');
+		IF_ID.pc =currentpc;
 		
 		Decode_Instruction decode_instruction = new Decode_Instruction();
 	}

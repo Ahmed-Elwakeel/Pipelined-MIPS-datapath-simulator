@@ -1,11 +1,15 @@
 data
-0 7
-4 3
+0 6
+4 2
 8 50
 pc 20
 text
 addi $s1 zero 0
 lw $s2 0($s1)
 lw $s3 4($s1)
-sltu $s4 $s3 $s2
+beq $s2 $s2 2
+sub $s4 $s3 $s2
+add $s4 $s3 $s2
+add $s4 $s3 $s3
 sw $s4 4($s1)
+end

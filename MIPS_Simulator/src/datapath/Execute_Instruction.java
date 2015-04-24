@@ -13,6 +13,7 @@ public class Execute_Instruction {
 		regdst();
 		//EX_MEM ex_mem  = new EX_MEM();
 		//ex_mem.set(zero, output, ID_EX.readdata2, outregdst, pc);
+		EX_MEM.visited = true;
 		EX_MEM.zero = zero;
 		EX_MEM.aluResult = output;
 		EX_MEM.data2 = ID_EX.readdata2;
@@ -48,10 +49,10 @@ public class Execute_Instruction {
 	
 	public void addpc(){
 		int x = Integer.parseInt(ID_EX.address, 2);
+		x = x << 2;
 		int y = Integer.parseInt(ID_EX.pc, 2);
 		
 		int res = x + y;
-		
 		pc = String.format("%32s", Integer.toBinaryString(res)).replace(' ', '0');
 		
 	}

@@ -1,7 +1,7 @@
 package datapath;
 
 public class EX_MEM {
-
+	public static boolean visited = false;
 	public static boolean zero;
 	public static String aluResult;
 	public static String data2;

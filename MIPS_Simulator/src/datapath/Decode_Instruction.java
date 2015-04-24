@@ -38,7 +38,7 @@ public class Decode_Instruction {
     	//ID_EX.address=instruction.substring(16, 32);
     	//int add =Integer.parseInt(idex.address);
     	ID_EX.address=se.signextend(Integer.parseInt(instruction.substring(16,32),2));
-    	
+
     	ID_EX.RegDst=c.regDst;
     	ID_EX.Branch=c.branch;
     	ID_EX.MemRead=c.memRead;

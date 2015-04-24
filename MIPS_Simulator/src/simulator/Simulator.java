@@ -9,10 +9,7 @@ import storage_components.Instruction_Memory;
 import storage_components.Memory;
 import storage_components.PC;
 import storage_components.Registers;
-import datapath.EX_MEM;
-import datapath.Fetch_Instruction;
-import datapath.ID_EX;
-import datapath.IF_ID;
+import datapath.Assembler;
 
 
 public class Simulator {
@@ -33,8 +30,8 @@ public class Simulator {
 			
 			System.out.println(IF_ID.instruction);
 		}*/
-		Fetch_Instruction fetch = new Fetch_Instruction();
-
+		//Fetch_Instruction fetch = new Fetch_Instruction();
+		Assembler assembler = new Assembler();
 	}
 	public void nameToBinary (){
 		opNameAndBinary = new HashMap<String , String>();
@@ -68,7 +65,7 @@ public class Simulator {
 	}
 	
 	public void init(){
-		 instructionmem = new Instruction_Memory();
+		// instructionmem = new Instruction_Memory();
 		// pc = new PC();
 		// if_id = new IF_ID();
 		// ID_EX id_ex = new ID_EX();
@@ -82,7 +79,7 @@ public class Simulator {
 		BufferedReader br = new BufferedReader(new FileReader("input.txt"));
 		String line = "";
 		size = 0;
-		while((line = br.readLine())!= null){
+		while(!((line = br.readLine()).equals("end"))){
 			if(line.equals("data")){
 				while(!(line=br.readLine()).equals("text")){
 					String arrayString [] = line.split(" ");
@@ -103,7 +100,11 @@ public class Simulator {
 			PC.add();
 			size++;
 		}
+		PC.endinstruction = PC.pc;
+		PC.set(Integer.parseInt(PC.instructionpc,2));
+		
 	}
+	
 	
 	
 	
