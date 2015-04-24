@@ -13,6 +13,7 @@ public class ID_EX {
 	
 	public static boolean RegDst;
 	public static boolean Branch;
+	public static boolean bneBranch;
 	public static boolean MemRead;
 	public static boolean MemtoReg;
 	public static String ALUOp;

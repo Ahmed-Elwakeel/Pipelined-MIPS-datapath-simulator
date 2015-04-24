@@ -24,7 +24,7 @@ public class Execute_Instruction {
 	    EX_MEM.memRead = ID_EX.MemRead;
 	    EX_MEM.memWrite = ID_EX.MemWrite;
 	    EX_MEM.memToReg= ID_EX.MemtoReg;
-	    
+	    EX_MEM.bneBranch = ID_EX.bneBranch;
 	    Mem mem = new Mem();
 	}
 	

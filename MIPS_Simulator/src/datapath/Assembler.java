@@ -21,11 +21,10 @@ public class Assembler {
 		 */
 		while (!(PC.pc.equals(PC.endinstruction))) {
 			
-			if (EX_MEM.visited) {
-				if (EX_MEM.branch && EX_MEM.zero) {
+				if (Mem.pcSrc) {
 					PC.set(Integer.parseInt(EX_MEM.pc,2)) ;
 				}
-			}
+			
 			fetch_instruction.fetching(PC.pc);
 			PC.add();
 			for(int i = 0 ; i <= 28 ;i= i+4){

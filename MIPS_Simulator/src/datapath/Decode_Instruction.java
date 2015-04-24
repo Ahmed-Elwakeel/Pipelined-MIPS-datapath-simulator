@@ -47,7 +47,7 @@ public class Decode_Instruction {
     	ID_EX.MemWrite=c.memWrite;
     	ID_EX.ALUSrc=c.ALUSrc;
     	ID_EX.RegWrite=c.regWrite;
-    	
+    	ID_EX.bneBranch = c.bneBranch;
     	ID_EX.pc = IF_ID.pc;
     }
 }

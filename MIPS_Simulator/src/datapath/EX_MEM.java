@@ -8,6 +8,7 @@ public class EX_MEM {
 	public static String outregdst;
 	public static String pc;
 	
+	public static boolean bneBranch;
 	public static boolean branch;
 	public static boolean regWrite;
 	public static boolean memRead;

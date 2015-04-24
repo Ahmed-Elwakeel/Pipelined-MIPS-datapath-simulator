@@ -8,8 +8,7 @@ addi $s1 zero 0
 lw $s2 0($s1)
 lw $s3 4($s1)
 beq $s2 $s2 2
-sub $s4 $s3 $s2
-add $s4 $s3 $s2
+add $s3 $s3 $s2
 add $s4 $s3 $s3
 sw $s4 4($s1)
 end
