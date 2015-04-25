@@ -22,6 +22,7 @@ public class Fetch_Instruction {
 	public static Map<String , String> funct ;
 	public static Map<String , String> op ;
 
+	public static String newPc;
 	public void funct(){
 		funct = new HashMap<String , String>();
 		funct.put("add", "100000");
@@ -65,6 +66,7 @@ public class Fetch_Instruction {
 	
 	public void fetching(String currentpc){
 //System.out.println(currentpc);
+		System.out.println(Integer.parseInt(currentpc,2) + "     fgfgfg");
 		String instruction[] = Memory.memory[Integer.parseInt(currentpc,2)].split(" ");
 		//String instruction[] = Simulator.instructionmem.get(pc).split(" ");
 		String operation = instruction[0];
@@ -100,7 +102,7 @@ public class Fetch_Instruction {
 			if(imm >= 0){
 				inst = op.get(instruction[0]) + rs + rt +String.format("%16s", Integer.toBinaryString(Integer.parseInt(instruction[3]))).replace(' ', '0');
 			}else{
-
+			
 			inst = op.get(instruction[0]) + rs + rt +String.format("%16s", Integer.toBinaryString(Integer.parseInt(instruction[3]))).replace(' ', '0').substring(16, 32);
 			}
 //I-Instruction with two fields 
@@ -131,16 +133,18 @@ public class Fetch_Instruction {
 		}else if(Arrays.asList(JInstruction).contains(operation)){
 			if(operation.equals("jr")){ // r-type jr
 				rs = Simulator.opNameAndBinary.get(instruction[1]);
-				inst = rs + "00000" + "00000" + "00000" + "001000";
+				inst = "000000"+ rs + "00000" + "00000" + "00000" + "001000";
 			}else {
 				inst = op.get(instruction[0]) +String.format("%26s", Integer.toBinaryString(Integer.parseInt(instruction[1]))).replace(' ', '0');
-
 			}
 		}
 		
 		//Simulator.if_id.set(pc, inst);
 		IF_ID.instruction = inst;
-		IF_ID.pc =currentpc;
+		int intPc = Integer.parseInt(currentpc,2);
+		intPc += 4;
+	    newPc = String.format("%32s", Integer.toBinaryString(intPc)).replace(' ', '0');
+		IF_ID.pc =newPc;
 		
 		Decode_Instruction decode_instruction = new Decode_Instruction();
 	}

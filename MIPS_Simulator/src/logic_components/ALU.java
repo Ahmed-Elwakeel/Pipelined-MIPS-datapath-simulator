@@ -42,8 +42,7 @@ public class ALU {
 	 case "0110" : if(x < y) res = 1; else res = 0;
 	   			   break;
 	 case "0111" : if(x < y) res = 1; else res = 0;
-		   			
-		   			break;
+	 case "1000" : break;
 	 }
 	 
 	 	intRes = (int) res;

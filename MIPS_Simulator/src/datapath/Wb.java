@@ -5,13 +5,15 @@ import storage_components.Registers;
 
 public class Wb {
 	public Wb(){
-	
+		
 		if(MEM_WB.regWrite){
 			if(MEM_WB.memToReg){
 			Registers.registers.put(MEM_WB.outregdst, MEM_WB.readdata);
 
 			}else{
-			Registers.registers.put(MEM_WB.outregdst, MEM_WB.aluResult);
+				
+				Registers.registers.put(MEM_WB.outregdst, MEM_WB.aluResult);
+				
 
 			}
 		}

@@ -23,7 +23,9 @@ public class Decode_Instruction {
 	
 	public void set(String instruction){
 		this.opcode=instruction.substring(0, 6);
-    	c.controlSignals(this.opcode);
+		String funct = instruction.substring(26,32);
+		
+    	c.controlSignals(this.opcode,funct);
     	//this.r=new Register();
     	//idex.rsv=r.reg.get(instruction.substring(25, 21));
     	//idex.rtv=r.reg.get(instruction.substring(20, 16));
@@ -38,7 +40,8 @@ public class Decode_Instruction {
     	//ID_EX.address=instruction.substring(16, 32);
     	//int add =Integer.parseInt(idex.address);
     	ID_EX.address=se.signextend(Integer.parseInt(instruction.substring(16,32),2));
-
+    	ID_EX.jAddress = instruction.substring(6,32);
+    	
     	ID_EX.RegDst=c.regDst;
     	ID_EX.Branch=c.branch;
     	ID_EX.MemRead=c.memRead;
@@ -48,6 +51,14 @@ public class Decode_Instruction {
     	ID_EX.ALUSrc=c.ALUSrc;
     	ID_EX.RegWrite=c.regWrite;
     	ID_EX.bneBranch = c.bneBranch;
+    	ID_EX.lb = c.lb;
+    	ID_EX.sb = c.sb;
+    	ID_EX.j = c.j;
+    	ID_EX.jal = c.jal;
+    	ID_EX.jr = c.jr;
     	ID_EX.pc = IF_ID.pc;
+    
+    	ID_EX.ra = "11111";
+    
     }
 }

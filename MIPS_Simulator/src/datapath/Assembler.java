@@ -1,5 +1,6 @@
 package datapath;
 
+import logic_components.ALUControl;
 import storage_components.Memory;
 import storage_components.PC;
 import storage_components.Registers;
@@ -19,14 +20,32 @@ public class Assembler {
 		 * fetch_instruction.fetching(String.format("%32s",
 		 * Integer.toBinaryString(i)).replace(' ', '0')); } }
 		 */
+		
+		
 		while (!(PC.pc.equals(PC.endinstruction))) {
-			
-				if (Mem.pcSrc) {
+				
+				/*if (Mem.pcSrc) {
 					PC.set(Integer.parseInt(EX_MEM.pc,2)) ;
-				}
-			
+				}else{
+					PC.set(Fetch_instruction.);
+				}*/
 			fetch_instruction.fetching(PC.pc);
-			PC.add();
+		/*	if(EX_MEM.jr){
+				PC.set(Integer.parseInt(ID_EX.readdata1));
+				System.out.println(Integer.parseInt(ID_EX.readdata1)+"AHMED");
+			}else{
+				if(EX_MEM.j){
+					PC.set(Integer.parseInt(EX_MEM.jpc,2));
+				}else{
+					if (Mem.pcSrc) {
+						PC.set(Integer.parseInt(EX_MEM.pc,2)) ;
+					}else{
+						PC.set(Integer.parseInt(fetch_instruction.newPc,2));
+					}
+				}
+			}
+			*/
+			//PC.add();
 			for(int i = 0 ; i <= 28 ;i= i+4){
 				System.out.println(Memory.memory[i]);	
 			}

@@ -6,7 +6,6 @@ import java.util.Map;
 public class ALUControl {
 	
 	static Map<String , String> opsixbits;
-	
 	public ALUControl( ){
 
 	opsixbits();
@@ -35,7 +34,7 @@ public class ALUControl {
 		}else if(ALUOp.equals("01")){ //sub
 			return "0001"; 
 		}else { //funct
-			opsixbits.get(sixbits);
+			
 			return opsixbits.get(sixbits);
 		}
 	}

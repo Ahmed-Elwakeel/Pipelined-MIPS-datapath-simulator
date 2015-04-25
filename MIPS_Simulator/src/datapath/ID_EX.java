@@ -10,6 +10,7 @@ public class ID_EX {
 	//public static String shamt;
 
 	public static String address; //[15-0]
+	public static String jAddress; //[0-25]
 	
 	public static boolean RegDst;
 	public static boolean Branch;
@@ -20,7 +21,12 @@ public class ID_EX {
 	public static boolean MemWrite;
 	public static boolean ALUSrc;
 	public static boolean RegWrite;
-
+	public static boolean lb;
+	public static boolean sb;
+	public static boolean j;
+	public static boolean jal;
+	public static boolean jr;
+	public static String ra;
 	public ID_EX(){
 
 	}
