@@ -1,0 +1,40 @@
+data
+0 8
+4 2
+8 50
+pc 20
+text
+addi $s1 zero 0
+addi $s1 zero 0
+addi $s1 zero 0
+addi $s1 zero 0
+lw $s2 0($s1)
+addi $s1 zero 0
+addi $s1 zero 0
+addi $s1 zero 0
+lw $s3 4($s1)
+addi $s1 zero 0
+addi $s1 zero 0
+addi $s1 zero 0
+jal 31
+addi $s1 zero 0
+addi $s1 zero 0
+addi $s1 zero 0
+addi $s1 zero 0
+sw $s4 4($s1)
+addi $s1 zero 0
+addi $s1 zero 0
+addi $s1 zero 0
+j 38
+addi $s1 zero 0
+addi $s1 zero 0
+addi $s1 zero 0
+add $s4 $s3 $s2
+addi $s1 zero 0
+addi $s1 zero 0
+addi $s1 zero 0
+jr $ra
+addi $s1 zero 0
+addi $s1 zero 0
+addi $s1 zero 0
+end
