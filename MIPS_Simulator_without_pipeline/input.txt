@@ -1,0 +1,16 @@
+data
+0 8
+4 2
+8 50
+pc 20
+text
+addi $s1 zero 0
+lw $s2 0($s1)
+lw $s3 4($s1)
+jal 12
+addi $s1 zero 0
+sw $s4 4($s1)
+j 14
+add $s4 $s3 $s2
+jr $ra
+end
